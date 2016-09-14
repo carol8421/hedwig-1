@@ -64,8 +64,3 @@ worker.statsdaemon:
   #port: 8125, 8126
   memory: 64M
   cmd: statsdaemon -config_file=/lain/app/statsdaemon.ini
-
-
-use_services:
-  mysql-service:
-    - mysql-master
