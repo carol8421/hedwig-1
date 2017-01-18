@@ -1,9 +1,9 @@
 appname: hedwig
 
 build:
-  base: laincloud/centos-lain:20160503
+  base: laincloud/centos-lain:20170103
   prepare:
-    version: 20160913
+    version: 20170118
     script:
       - yum install -y https://grafanarel.s3.amazonaws.com/builds/grafana-2.6.0-1.x86_64.rpm
       - pip install carbon==0.9.15 whisper==0.9.15
@@ -37,8 +37,6 @@ web.grafana:
     --config=/etc/grafana/grafana.ini
     cfg:default.paths.logs=/var/log/grafana
     cfg:default.paths.data=/var/lib/grafana
-  mountpoint:
-    - hedwig-grafana.lain.local
   persistent_dirs:
     - /var/lib/grafana/:
         backup_full:
