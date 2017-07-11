@@ -3,15 +3,15 @@ appname: hedwig
 build:
   base: laincloud/centos-lain:20170103
   prepare:
-    version: 20170118
+    version: 20170711
     script:
-      - yum install -y https://grafanarel.s3.amazonaws.com/builds/grafana-2.6.0-1.x86_64.rpm
+      - yum install -y https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-4.4.1-1.x86_64.rpm
       - pip install carbon==0.9.15 whisper==0.9.15
       - yum install -y cairo-devel libffi-devel
       - pip install graphite-api==1.1.2 gunicorn supervisor
       - yum install -y nginx
       - yum clean all
-      - GOPATH=/tmp go get github.com/Vimeo/statsdaemon/statsdaemon
+      - GOPATH=/tmp go get github.com/raintank/statsdaemon/cmd/statsdaemon
       - install -Dsm755 /tmp/bin/statsdaemon /usr/bin/statsdaemon
       - rm -rf /tmp/{bin,pkg,src}
   script:
@@ -21,7 +21,7 @@ build:
     - cp /lain/app/web/nginx.conf /etc/nginx/nginx.conf
 
 
-web.grafana:
+web:
   port: 3000
   https_only: true
   memory: 128M
